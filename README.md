@@ -44,6 +44,10 @@ The UCL league ID and player-search season are configurable (defaults `2` and `2
 
 Tests use H2 under the `test` profile and mock HTTP responses; they do not call the real provider. Start MySQL and configure the provider key before exercising live endpoints. The default application profile connects to MySQL and does not require the provider key until a football-data endpoint is used.
 
+## Frontend
+
+The plain HTML5 and vanilla JavaScript frontend is served by Spring Boot from `src/main/resources/static`; open `http://localhost:8080/` after starting the application. It includes the dashboard, player search and profiles, player comparison, leaderboard, and predictions. The shared `js/api.js` module calls the REST API at `http://localhost:8080/api/v1`. The leaderboard loads statistics on demand because its response contains predictions but no statistics; the comparison endpoint accepts at most 10 external player IDs per request.
+
 ## REST endpoints
 
 Base URL: `http://localhost:8080/api/v1`. Search returns a paginated body; player IDs in routes are API-Football external IDs.

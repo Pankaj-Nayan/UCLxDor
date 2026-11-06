@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Predictions | UCL Ballon d'Or Predictor</title>
+</head>
+<body>
+    <header>
+        <h1>Ballon d'Or predictions</h1>
+        <nav aria-label="Main navigation">
+            <a href="index.html">Dashboard</a>
+            <a href="players.html">Player search</a>
+            <a href="compare.html">Compare players</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="predictions.html" aria-current="page">Predictions</a>
+        </nav>
+    </header>
+    <main>
+        <section aria-labelledby="predictions-heading">
+            <h2 id="predictions-heading">Predicted contenders</h2>
+            <label for="predictions-season">Season</label>
+            <select id="predictions-season" disabled></select>
+            <p id="predictions-status" role="status" aria-live="polite">Loading available seasons…</p>
+            <p id="predictions-scope"></p>
+            <p>These are model-estimated relative shares within the provider-reported UCL statistics cohort. They are not official Ballon d'Or odds or actual voting results; this API does not provide voting results.</p>
+            <ol id="predictions-list"></ol>
+        </section>
+        <section aria-labelledby="limitations-heading">
+            <h2 id="limitations-heading">Model limitations</h2>
+            <ul id="prediction-limitations"></ul>
+        </section>
+    </main>
+    <script type="module" src="js/predictions.js"></script>
+</body>
+</html>

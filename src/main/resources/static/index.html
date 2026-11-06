@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UCL Ballon d'Or Predictor</title>
+</head>
+<body>
+    <header>
+        <h1>UCL Ballon d'Or Predictor</h1>
+        <nav aria-label="Main navigation">
+            <a href="index.html" aria-current="page">Dashboard</a>
+            <a href="players.html">Player search</a>
+            <a href="compare.html">Compare players</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="predictions.html">Predictions</a>
+        </nav>
+    </header>
+    <main>
+        <section aria-labelledby="intro-heading">
+            <h2 id="intro-heading">A UCL performance-based view of the Ballon d'Or race</h2>
+            <p>Explore player profiles, UEFA Champions League season statistics, and model-estimated contender probabilities. Estimates are based on the eligible UCL statistics cohort and are not official Ballon d'Or odds or voting results.</p>
+        </section>
+        <section aria-labelledby="season-heading">
+            <h2 id="season-heading">Current selected season</h2>
+            <label for="dashboard-season">Season</label>
+            <select id="dashboard-season" disabled></select>
+            <p id="dashboard-season-status" role="status" aria-live="polite">Loading available seasons…</p>
+        </section>
+        <section aria-labelledby="featured-heading">
+            <h2 id="featured-heading">Featured players</h2>
+            <p id="featured-status" role="status" aria-live="polite">Select a season to load featured players.</p>
+            <div id="featured-players"></div>
+        </section>
+        <section aria-labelledby="contenders-heading">
+            <h2 id="contenders-heading">Top Ballon d'Or contenders</h2>
+            <p id="contenders-status" role="status" aria-live="polite">Contenders are calculated from the selected season's eligible UCL cohort.</p>
+            <ol id="top-contenders"></ol>
+        </section>
+        <section aria-labelledby="leaderboard-heading">
+            <h2 id="leaderboard-heading">Leaderboard preview</h2>
+            <p id="leaderboard-preview-status" role="status" aria-live="polite">Select a season to load the leaderboard.</p>
+            <ol id="leaderboard-preview"></ol>
+            <p><a href="leaderboard.html">View the full leaderboard</a></p>
+        </section>
+    </main>
+    <footer>
+        <p>Predicted probabilities are model estimates, not actual voting results.</p>
+    </footer>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

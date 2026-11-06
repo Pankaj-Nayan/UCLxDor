@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Player search | UCL Ballon d'Or Predictor</title>
+</head>
+<body>
+    <header>
+        <h1>Player search</h1>
+        <nav aria-label="Main navigation">
+            <a href="index.html">Dashboard</a>
+            <a href="players.html" aria-current="page">Player search</a>
+            <a href="compare.html">Compare players</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="predictions.html">Predictions</a>
+        </nav>
+    </header>
+    <main>
+        <section aria-labelledby="search-heading">
+            <h2 id="search-heading">Find a player by name</h2>
+            <form id="player-search-form">
+                <label for="player-search-name">Player name</label>
+                <input id="player-search-name" name="name" type="search" autocomplete="off">
+                <button type="submit">Search</button>
+            </form>
+            <p>Enter at least 3 characters. Results come from the connected player data provider.</p>
+            <p id="search-status" role="status" aria-live="polite">Search for a player to see matching results.</p>
+            <ul id="search-results"></ul>
+            <button id="load-more" type="button" hidden>Load more results</button>
+        </section>
+    </main>
+    <script type="module" src="js/players.js"></script>
+</body>
+</html>

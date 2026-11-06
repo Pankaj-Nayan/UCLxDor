@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Leaderboard | UCL Ballon d'Or Predictor</title>
+</head>
+<body>
+    <header>
+        <h1>Season leaderboard</h1>
+        <nav aria-label="Main navigation">
+            <a href="index.html">Dashboard</a>
+            <a href="players.html">Player search</a>
+            <a href="compare.html">Compare players</a>
+            <a href="leaderboard.html" aria-current="page">Leaderboard</a>
+            <a href="predictions.html">Predictions</a>
+        </nav>
+    </header>
+    <main>
+        <section aria-labelledby="leaderboard-heading">
+            <h2 id="leaderboard-heading">Ranked UCL contenders</h2>
+            <label for="leaderboard-season">Season</label>
+            <select id="leaderboard-season" disabled></select>
+            <button id="refresh-season" type="button" disabled>Refresh season statistics</button>
+            <p id="leaderboard-status" role="status" aria-live="polite">Loading available seasons…</p>
+            <p id="probability-scope"></p>
+            <p>The leaderboard endpoint returns player predictions, not season statistics. Use each row's statistics button to load that player's available statistics on demand.</p>
+            <label for="leaderboard-sort">Sort by</label>
+            <select id="leaderboard-sort" disabled>
+                <option value="probability">Estimated probability (highest first)</option>
+                <option value="score">Performance score (highest first)</option>
+                <option value="name">Player name (A–Z)</option>
+            </select>
+            <div id="leaderboard-table-container"></div>
+        </section>
+    </main>
+    <script type="module" src="js/leaderboard.js"></script>
+</body>
+</html>

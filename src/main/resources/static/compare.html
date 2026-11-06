@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Compare players | UCL Ballon d'Or Predictor</title>
+</head>
+<body>
+    <header>
+        <h1>Player comparison</h1>
+        <nav aria-label="Main navigation">
+            <a href="index.html">Dashboard</a>
+            <a href="players.html">Player search</a>
+            <a href="compare.html" aria-current="page">Compare players</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="predictions.html">Predictions</a>
+        </nav>
+    </header>
+    <main>
+        <section aria-labelledby="add-player-heading">
+            <h2 id="add-player-heading">Select players by name</h2>
+            <form id="comparison-search-form">
+                <label for="comparison-search-name">Player name</label>
+                <input id="comparison-search-name" name="name" type="search" autocomplete="off">
+                <button type="submit">Search players</button>
+            </form>
+            <p>Enter at least 3 characters, then add 2–10 players from the results.</p>
+            <p id="comparison-search-status" role="status" aria-live="polite">Search by player name to add players.</p>
+            <ul id="comparison-search-results"></ul>
+        </section>
+        <section aria-labelledby="selected-heading">
+            <h2 id="selected-heading">Players selected for comparison</h2>
+            <p id="selected-status" role="status" aria-live="polite">No players selected.</p>
+            <ul id="selected-players"></ul>
+            <label for="comparison-season">Season</label>
+            <select id="comparison-season" disabled></select>
+            <button id="compare-button" type="button" disabled>Compare selected players</button>
+            <p id="comparison-status" role="status" aria-live="polite"></p>
+            <div id="comparison-results"></div>
+        </section>
+        <p>Estimated probabilities are UCL cohort-relative model outputs, not actual Ballon d'Or voting results.</p>
+    </main>
+    <script type="module" src="js/compare.js"></script>
+</body>
+</html>
