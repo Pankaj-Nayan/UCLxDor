@@ -3,35 +3,37 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Predictions | UCL Ballon d'Or Predictor</title>
+    <meta name="theme-color" content="#070B18">
+    <title>Predictions — UCLxDOR</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Ballon d'Or predictions</h1>
-        <nav aria-label="Main navigation">
-            <a href="index.html">Dashboard</a>
-            <a href="players.html">Player search</a>
-            <a href="compare.html">Compare players</a>
-            <a href="leaderboard.html">Leaderboard</a>
-            <a href="predictions.html" aria-current="page">Predictions</a>
-        </nav>
-    </header>
+    <header class="site-header"><div class="topbar">
+        <a class="brand" href="index.html" aria-label="UCLxDOR dashboard"><span class="brand-mark" aria-hidden="true">✦</span><span>UCL<span class="brand-x">×</span>DOR<small>THE CONTENDER INDEX</small></span></a>
+        <nav aria-label="Main navigation"><a href="index.html">Dashboard</a><a href="players.html">Players</a><a href="compare.html">Compare</a><a href="leaderboard.html">Leaderboard</a><a href="predictions.html" aria-current="page">Predictions</a></nav>
+    </div></header>
     <main>
-        <section aria-labelledby="predictions-heading">
-            <h2 id="predictions-heading">Predicted contenders</h2>
-            <label for="predictions-season">Season</label>
-            <select id="predictions-season" disabled></select>
-            <p id="predictions-status" role="status" aria-live="polite">Loading available seasons…</p>
-            <p id="predictions-scope"></p>
-            <p>These are model-estimated relative shares within the provider-reported UCL statistics cohort. They are not official Ballon d'Or odds or actual voting results; this API does not provide voting results.</p>
-            <ol id="predictions-list"></ol>
+        <section class="page-heading award-heading">
+            <p class="eyebrow"><span class="gold-star" aria-hidden="true">✦</span> THE AWARD CONVERSATION</p>
+            <h1>A season of contenders.<br><span>One model-informed view.</span></h1>
+            <p>Explore the relative estimates and performance factors behind the UCLxDOR contender rankings.</p>
         </section>
-        <section aria-labelledby="limitations-heading">
-            <h2 id="limitations-heading">Model limitations</h2>
+        <section class="content-section" aria-labelledby="predictions-heading">
+            <div class="section-heading"><div><p class="eyebrow">BALLOON D'OR · UCL LENS</p><h2 id="predictions-heading">Predicted contenders</h2></div>
+                <label class="season-control" for="predictions-season">Season<select id="predictions-season" disabled></select></label>
+            </div>
+            <p id="predictions-scope" class="scope-note"></p>
+            <p id="predictions-status" class="section-status" role="status" aria-live="polite">Loading available seasons…</p>
+            <p class="form-hint">Estimated shares are model outputs across the provider-reported UCL statistics cohort—not official odds or voting results.</p>
+            <ol id="predictions-list" class="prediction-list"></ol>
+        </section>
+        <section class="content-section model-notes" aria-labelledby="limitations-heading">
+            <div class="section-heading"><div><p class="eyebrow">HOW TO READ THE MODEL</p><h2 id="limitations-heading">Method & limitations</h2></div></div>
+            <p class="section-status">Factor percentiles compare available statistical metrics within position groups. Missing inputs are excluded and remaining weights are renormalized.</p>
             <ul id="prediction-limitations"></ul>
         </section>
     </main>
+    <footer><p>UCLxDOR estimates are not calibrated official Ballon d'Or probabilities, betting odds or actual voting results.</p></footer>
     <script type="module" src="js/predictions.js"></script>
 </body>
 </html>

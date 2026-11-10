@@ -3,44 +3,46 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Compare players | UCL Ballon d'Or Predictor</title>
+    <meta name="theme-color" content="#070B18">
+    <title>Compare players — UCLxDOR</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Player comparison</h1>
-        <nav aria-label="Main navigation">
-            <a href="index.html">Dashboard</a>
-            <a href="players.html">Player search</a>
-            <a href="compare.html" aria-current="page">Compare players</a>
-            <a href="leaderboard.html">Leaderboard</a>
-            <a href="predictions.html">Predictions</a>
-        </nav>
-    </header>
+    <header class="site-header"><div class="topbar">
+        <a class="brand" href="index.html" aria-label="UCLxDOR dashboard"><span class="brand-mark" aria-hidden="true">✦</span><span>UCL<span class="brand-x">×</span>DOR<small>THE CONTENDER INDEX</small></span></a>
+        <nav aria-label="Main navigation"><a href="index.html">Dashboard</a><a href="players.html">Players</a><a href="compare.html" aria-current="page">Compare</a><a href="leaderboard.html">Leaderboard</a><a href="predictions.html">Predictions</a></nav>
+    </div></header>
     <main>
-        <section aria-labelledby="add-player-heading">
-            <h2 id="add-player-heading">Select players by name</h2>
-            <form id="comparison-search-form">
-                <label for="comparison-search-name">Player name</label>
-                <input id="comparison-search-name" name="name" type="search" autocomplete="off">
-                <button type="submit">Search players</button>
-            </form>
-            <p>Enter at least 3 characters, then add 2–10 players from the results.</p>
-            <p id="comparison-search-status" role="status" aria-live="polite">Search by player name to add players.</p>
-            <ul id="comparison-search-results"></ul>
+        <section class="page-heading">
+            <p class="eyebrow">HEAD TO HEAD</p>
+            <h1>One season. <span>Two perspectives.</span></h1>
+            <p>Build your comparison from real player records and see how their UCL seasons stack up.</p>
         </section>
-        <section aria-labelledby="selected-heading">
-            <h2 id="selected-heading">Players selected for comparison</h2>
-            <p id="selected-status" role="status" aria-live="polite">No players selected.</p>
-            <ul id="selected-players"></ul>
-            <label for="comparison-season">Season</label>
-            <select id="comparison-season" disabled></select>
-            <button id="compare-button" type="button" disabled>Compare selected players</button>
-            <p id="comparison-status" role="status" aria-live="polite"></p>
+        <section class="content-section" aria-labelledby="add-player-heading">
+            <div class="section-heading"><div><p class="eyebrow">BUILD YOUR LINEUP</p><h2 id="add-player-heading">Choose players</h2></div><span class="selection-limit">2–10 players</span></div>
+            <form id="comparison-search-form" class="search-form">
+                <label for="comparison-search-name">Player name</label>
+                <div class="search-control"><span aria-hidden="true">⌕</span><input id="comparison-search-name" name="name" type="search" autocomplete="off" placeholder="Search a player…" minlength="3"></div>
+                <button type="submit">Search players <span aria-hidden="true">→</span></button>
+            </form>
+            <p class="form-hint">Enter at least 3 characters, then add 2–10 players from the results.</p>
+            <p id="comparison-search-status" class="section-status" role="status" aria-live="polite">Search by player name to add players.</p>
+            <ul id="comparison-search-results" class="comparison-search-results"></ul>
+        </section>
+        <section class="content-section" aria-labelledby="selected-heading">
+            <div class="section-heading"><div><p class="eyebrow">YOUR COMPARISON</p><h2 id="selected-heading">Selected players</h2></div></div>
+            <p id="selected-status" class="section-status" role="status" aria-live="polite">No players selected.</p>
+            <ul id="selected-players" class="selected-players"></ul>
+            <div class="comparison-controls">
+                <label class="season-control" for="comparison-season">Season<select id="comparison-season" disabled></select></label>
+                <button id="compare-button" type="button" disabled>Compare selected players <span aria-hidden="true">→</span></button>
+            </div>
+            <p id="comparison-status" class="section-status" role="status" aria-live="polite"></p>
             <div id="comparison-results"></div>
         </section>
-        <p>Estimated probabilities are UCL cohort-relative model outputs, not actual Ballon d'Or voting results.</p>
+        <p class="disclaimer">Estimated probabilities are UCL cohort-relative model outputs, not actual Ballon d'Or voting results.</p>
     </main>
+    <footer><p>Statistics are compared as reported by the backend for the selected season.</p></footer>
     <script type="module" src="js/compare.js"></script>
 </body>
 </html>

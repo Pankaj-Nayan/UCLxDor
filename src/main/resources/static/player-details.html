@@ -3,40 +3,37 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Player profile | UCL Ballon d'Or Predictor</title>
+    <meta name="theme-color" content="#070B18">
+    <title>Player profile — UCLxDOR</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Player profile</h1>
-        <nav aria-label="Main navigation">
-            <a href="index.html">Dashboard</a>
-            <a href="players.html">Player search</a>
-            <a href="compare.html">Compare players</a>
-            <a href="leaderboard.html">Leaderboard</a>
-            <a href="predictions.html">Predictions</a>
-        </nav>
-    </header>
+    <header class="site-header"><div class="topbar">
+        <a class="brand" href="index.html" aria-label="UCLxDOR dashboard"><span class="brand-mark" aria-hidden="true">✦</span><span>UCL<span class="brand-x">×</span>DOR<small>THE CONTENDER INDEX</small></span></a>
+        <nav aria-label="Main navigation"><a href="index.html">Dashboard</a><a href="players.html" aria-current="page">Players</a><a href="compare.html">Compare</a><a href="leaderboard.html">Leaderboard</a><a href="predictions.html">Predictions</a></nav>
+    </div></header>
     <main>
-        <p><a href="players.html">Return to player search</a></p>
-        <section aria-labelledby="profile-heading">
-            <h2 id="profile-heading">Player information</h2>
-            <p id="profile-status" role="status" aria-live="polite">Loading player profile…</p>
-            <div id="player-profile"></div>
+        <p class="back-link"><a href="players.html">← Back to player search</a></p>
+        <section class="content-section profile-section" aria-labelledby="profile-heading">
+            <p class="eyebrow">PLAYER PROFILE</p>
+            <h1 id="profile-heading">The player behind the numbers</h1>
+            <p id="profile-status" class="section-status" role="status" aria-live="polite">Loading player profile…</p>
+            <div id="player-profile" class="profile-card"></div>
         </section>
-        <section aria-labelledby="season-heading">
-            <h2 id="season-heading">Season statistics</h2>
-            <label for="profile-season">Season</label>
-            <select id="profile-season" disabled></select>
-            <p id="statistics-status" role="status" aria-live="polite">Loading available seasons…</p>
-            <dl id="player-statistics"></dl>
+        <section class="content-section" aria-labelledby="season-heading">
+            <div class="section-heading"><div><p class="eyebrow">ON THE PITCH</p><h2 id="season-heading">Season statistics</h2></div>
+                <label class="season-control" for="profile-season">Season<select id="profile-season" disabled></select></label>
+            </div>
+            <p id="statistics-status" class="section-status" role="status" aria-live="polite">Loading available seasons…</p>
+            <dl id="player-statistics" class="stat-grid"></dl>
         </section>
-        <section aria-labelledby="prediction-heading">
-            <h2 id="prediction-heading">Predicted Ballon d'Or winning percentage</h2>
-            <p id="prediction-status" role="status" aria-live="polite">Select a season to load the model estimate.</p>
+        <section class="content-section prediction-panel" aria-labelledby="prediction-heading">
+            <div class="section-heading"><div><p class="eyebrow">THE AWARD CONVERSATION</p><h2 id="prediction-heading">Ballon d'Or model estimate</h2></div></div>
+            <p id="prediction-status" class="section-status" role="status" aria-live="polite">Select a season to load the model estimate.</p>
             <div id="player-prediction"></div>
         </section>
     </main>
+    <footer><p>Player probabilities are cohort-relative model estimates, not official award odds or voting results.</p></footer>
     <script type="module" src="js/player-details.js"></script>
 </body>
 </html>

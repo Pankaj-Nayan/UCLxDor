@@ -1,5 +1,5 @@
 import { getLeaderboard, getPlayerStatistics, getSeasons, refreshSeason } from "./api.js";
-import { element, formatProbability, formatValue, populateSeasonSelect, seasonFromQuery, setStatus } from "./ui.js";
+import { element, formatProbability, formatValue, playerPhoto, populateSeasonSelect, seasonFromQuery, setStatus } from "./ui.js";
 
 const seasonSelect = document.querySelector("#leaderboard-season");
 const refreshButton = document.querySelector("#refresh-season");
@@ -47,14 +47,17 @@ function renderTable() {
         const stats = loadedStatistics.get(playerId);
         const row = element("tr");
         row.append(element("td", index + 1));
-        const nameCell = element("td");
+        const nameCell = element("td", undefined, "leaderboard-player-cell");
+        nameCell.append(playerPhoto(player));
+        const playerName = element("span", undefined, "leaderboard-player-name");
         if (Number.isInteger(playerId) && playerId > 0) {
             const link = element("a", player.name || "Unnamed player");
             link.href = `player-details.html?id=${encodeURIComponent(playerId)}&season=${encodeURIComponent(currentSeason)}`;
-            nameCell.append(link);
+            playerName.append(link);
         } else {
-            nameCell.textContent = player.name || "Unnamed player";
+            playerName.textContent = player.name || "Unnamed player";
         }
+        nameCell.append(playerName);
         row.append(nameCell);
         row.append(element("td", formatValue(player.currentClub)));
         row.append(element("td", formatValue(prediction.performanceScore)));

@@ -9,12 +9,18 @@ const contendersStatus = document.querySelector("#contenders-status");
 const topContenders = document.querySelector("#top-contenders");
 const previewStatus = document.querySelector("#leaderboard-preview-status");
 const leaderboardPreview = document.querySelector("#leaderboard-preview");
+const contenderCount = document.querySelector("#overview-contenders");
+const leadingScore = document.querySelector("#overview-score");
+const leadingProbability = document.querySelector("#overview-probability");
 let availableSeasons = [];
 
 async function loadSeason(season) {
     featuredPlayers.replaceChildren();
     topContenders.replaceChildren();
     leaderboardPreview.replaceChildren();
+    contenderCount.textContent = "—";
+    leadingScore.textContent = "—";
+    leadingProbability.textContent = "—";
     setStatus(featuredStatus, "Loading featured players…", "loading");
     setStatus(contendersStatus, "Loading contender predictions…", "loading");
     setStatus(previewStatus, "Loading leaderboard preview…", "loading");
@@ -28,6 +34,11 @@ async function loadSeason(season) {
             setStatus(previewStatus, "The leaderboard is empty for this season.", "empty");
             return;
         }
+
+        contenderCount.textContent = String(contenders.length);
+        const score = Number(contenders[0].performanceScore);
+        leadingScore.textContent = Number.isFinite(score) ? score.toFixed(1) : "—";
+        leadingProbability.textContent = formatProbability(contenders[0].estimatedWinningProbability);
 
         for (const prediction of contenders.slice(0, 3)) appendPlayerCard(featuredPlayers, prediction, season);
         setStatus(featuredStatus, `Featured players from the ${season} leaderboard.`, "success");

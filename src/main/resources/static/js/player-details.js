@@ -43,8 +43,32 @@ async function loadSeason(season) {
     if (predictionResult.status === "fulfilled") {
         const prediction = predictionResult.value;
         predictionContainer.append(element("p", `${formatProbability(prediction.estimatedWinningProbability)} estimated winning probability`));
-        predictionContainer.append(element("p", `Performance score: ${prediction.performanceScore}`));
+        const score = Number(prediction.performanceScore);
+        const scoreLabel = element("p", `Performance score: ${Number.isFinite(score) ? score.toFixed(1) : "—"}`, "prediction-score");
+        predictionContainer.append(scoreLabel);
+        if (Number.isFinite(score)) {
+            const meter = element("div", undefined, "score-meter");
+            meter.setAttribute("role", "img");
+            meter.setAttribute("aria-label", `Performance score ${score.toFixed(1)} out of 100`);
+            const fill = element("span");
+            fill.style.width = `${Math.max(0, Math.min(100, score))}%`;
+            meter.append(fill);
+            predictionContainer.append(meter);
+        }
         if (prediction.probabilityScope) predictionContainer.append(element("p", prediction.probabilityScope));
+        const factors = prediction.factorPercentiles && typeof prediction.factorPercentiles === "object"
+            ? Object.entries(prediction.factorPercentiles).filter(([, value]) => Number.isFinite(Number(value)))
+            : [];
+        if (factors.length) {
+            const factorSection = element("div", undefined, "profile-factors");
+            factorSection.append(element("h3", "Scoring factors"));
+            const factorList = element("ul");
+            for (const [name, value] of factors) {
+                factorList.append(element("li", `${name.replaceAll("_", " ")}: ${Number(value).toFixed(1)} percentile`));
+            }
+            factorSection.append(factorList);
+            predictionContainer.append(factorSection);
+        }
         if (Array.isArray(prediction.limitations) && prediction.limitations.length) {
             const list = element("ul");
             for (const limitation of prediction.limitations) list.append(element("li", limitation));

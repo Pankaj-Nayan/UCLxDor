@@ -1,5 +1,5 @@
 import { comparePlayers, getPlayers, getSeasons } from "./api.js";
-import { element, formatProbability, formatValue, populateSeasonSelect, setStatus } from "./ui.js";
+import { element, formatProbability, formatValue, playerPhoto, populateSeasonSelect, setStatus } from "./ui.js";
 
 const searchForm = document.querySelector("#comparison-search-form");
 const searchInput = document.querySelector("#comparison-search-name");
@@ -16,8 +16,12 @@ const selectedPlayers = new Map();
 function updateSelectedPlayers() {
     selectedList.replaceChildren();
     for (const player of selectedPlayers.values()) {
-        const item = element("li");
-        item.append(element("span", `${player.name || "Unnamed player"}${player.currentClub ? ` — ${player.currentClub}` : ""}`));
+        const item = element("li", undefined, "selected-player");
+        item.append(playerPhoto(player));
+        const details = element("span", undefined, "comparison-player-details");
+        details.append(element("strong", player.name || "Unnamed player"));
+        if (player.currentClub) details.append(element("small", player.currentClub));
+        item.append(details);
         const remove = element("button", "Remove");
         remove.type = "button";
         remove.addEventListener("click", () => {
@@ -38,9 +42,10 @@ function updateSelectedPlayers() {
 }
 
 function renderSearchResult(player) {
-    const item = element("li");
+    const item = element("li", undefined, "comparison-search-result");
     const description = `${player.name || "Unnamed player"}${player.currentClub ? ` — ${player.currentClub}` : ""}`;
-    item.append(element("span", description));
+    item.append(playerPhoto(player));
+    item.append(element("span", description, "comparison-player-details"));
     const id = Number(player.externalPlayerId);
     const addButton = element("button", selectedPlayers.has(id) ? "Added" : "Add to comparison");
     addButton.type = "button";
@@ -110,35 +115,43 @@ function renderComparison(result) {
     const head = element("thead");
     const headerRow = element("tr");
     headerRow.append(element("th", "Metric"));
-    players.forEach(player => headerRow.append(element("th", player.name || "Unnamed player")));
+    players.forEach(player => {
+        const heading = element("th");
+        const selectedPlayer = selectedPlayers.get(Number(player.externalPlayerId));
+        if (selectedPlayer) heading.append(playerPhoto(selectedPlayer));
+        heading.append(element("span", player.name || "Unnamed player", "comparison-player-heading"));
+        headerRow.append(heading);
+    });
     head.append(headerRow);
     table.append(head);
 
     const metrics = [
-        ["Goals", "goals", false],
-        ["Assists", "assists", false],
-        ["Appearances", "appearances", false],
-        ["Minutes played", "minutesPlayed", false],
-        ["Average rating", "averageRating", false],
-        ["Performance score", "performanceScore", false],
-        ["Estimated winning probability", "estimatedWinningProbability", true]
+        ["Goals", "goals", false, 1],
+        ["Assists", "assists", false, 1],
+        ["Appearances", "appearances", false, 1],
+        ["Minutes played", "minutesPlayed", false, 1],
+        ["Average rating", "averageRating", false, 1],
+        ["Performance score", "performanceScore", false, 1],
+        ["Estimated winning probability", "estimatedWinningProbability", true, 1]
     ];
     const body = element("tbody");
-    for (const [label, field, probability] of metrics) {
+    for (const [label, field, probability, direction] of metrics) {
         const row = element("tr");
         row.append(element("th", label));
         const values = players.map(player => player[field] === null || player[field] === undefined
             ? Number.NaN
             : Number(player[field]));
         const presentValues = values.filter(Number.isFinite);
-        const maximum = presentValues.length ? Math.max(...presentValues) : null;
+        const bestValue = presentValues.length
+            ? Math.max(...presentValues.map(value => value * direction))
+            : null;
         const hasDifference = presentValues.some(value => value !== presentValues[0]);
         players.forEach((player, index) => {
             const cell = element("td");
             const value = player[field];
             cell.textContent = probability ? formatProbability(value) : formatValue(value);
-            if (hasDifference && Number.isFinite(values[index]) && values[index] === maximum) {
-                cell.append(element("strong", " (highest)"));
+            if (hasDifference && Number.isFinite(values[index]) && values[index] * direction === bestValue) {
+                cell.append(element("strong", " (best)"));
             }
             row.append(cell);
         });

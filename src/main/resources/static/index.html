@@ -3,51 +3,106 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>UCL Ballon d'Or Predictor</title>
+    <meta name="theme-color" content="#070B18">
+    <title>UCLxDOR — Champions League performance, in focus</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>UCL Ballon d'Or Predictor</h1>
-        <nav aria-label="Main navigation">
-            <a href="index.html" aria-current="page">Dashboard</a>
-            <a href="players.html">Player search</a>
-            <a href="compare.html">Compare players</a>
-            <a href="leaderboard.html">Leaderboard</a>
-            <a href="predictions.html">Predictions</a>
-        </nav>
+    <header class="site-header">
+        <div class="topbar">
+            <a class="brand" href="index.html" aria-label="UCLxDOR dashboard">
+                <span class="brand-mark" aria-hidden="true">✦</span>
+                <span>UCL<span class="brand-x">×</span>DOR<small>THE CONTENDER INDEX</small></span>
+            </a>
+            <nav aria-label="Main navigation">
+                <a href="index.html" aria-current="page">Dashboard</a>
+                <a href="players.html">Players</a>
+                <a href="compare.html">Compare</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="predictions.html">Predictions</a>
+            </nav>
+        </div>
     </header>
-    <main>
-        <section aria-labelledby="intro-heading">
-            <h2 id="intro-heading">A UCL performance-based view of the Ballon d'Or race</h2>
-            <p>Explore player profiles, UEFA Champions League season statistics, and model-estimated contender probabilities. Estimates are based on the eligible UCL statistics cohort and are not official Ballon d'Or odds or voting results.</p>
+    <main class="dashboard-main">
+        <section class="hero" aria-labelledby="intro-heading">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="live-dot"></span> UEFA CHAMPIONS LEAGUE · PLAYER INTELLIGENCE</p>
+                <h1 id="intro-heading">The race for <span>greatness</span>, measured.</h1>
+                <p>Every performance has a story. Explore the players, numbers and model estimates shaping the Champions League Ballon d'Or conversation.</p>
+                <div class="hero-actions">
+                    <a class="button-link" href="leaderboard.html">Explore leaderboard <span aria-hidden="true">↗</span></a>
+                    <a class="text-link" href="players.html">Find a player <span aria-hidden="true">→</span></a>
+                </div>
+                <p class="hero-disclaimer">UCL statistical model · Estimates are not official award odds</p>
+            </div>
+            <div class="hero-orbit" aria-hidden="true">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="orbit-core"><span>UCL</span><strong>×</strong><span>DOR</span></div>
+                <span class="orbit-star star-one">✦</span>
+                <span class="orbit-star star-two">✦</span>
+                <span class="orbit-star star-three">✧</span>
+            </div>
         </section>
-        <section aria-labelledby="season-heading">
-            <h2 id="season-heading">Current selected season</h2>
-            <label for="dashboard-season">Season</label>
-            <select id="dashboard-season" disabled></select>
-            <p id="dashboard-season-status" role="status" aria-live="polite">Loading available seasons…</p>
+
+        <section class="season-bar" aria-labelledby="season-heading">
+            <div>
+                <p class="eyebrow">SEASON SNAPSHOT</p>
+                <h2 id="season-heading">The contender index</h2>
+                <p id="dashboard-season-status" role="status" aria-live="polite">Loading available seasons…</p>
+            </div>
+            <label class="season-control" for="dashboard-season">Competition season
+                <select id="dashboard-season" disabled></select>
+            </label>
         </section>
-        <section aria-labelledby="featured-heading">
-            <h2 id="featured-heading">Featured players</h2>
-            <p id="featured-status" role="status" aria-live="polite">Select a season to load featured players.</p>
-            <div id="featured-players"></div>
+        <section class="overview-grid" id="dashboard-overview" aria-label="Season overview">
+            <article class="overview-card">
+                <span class="overview-icon" aria-hidden="true">◎</span>
+                <p>Eligible contenders</p><strong id="overview-contenders">—</strong>
+                <small>Players in the season cohort</small>
+            </article>
+            <article class="overview-card">
+                <span class="overview-icon" aria-hidden="true">↗</span>
+                <p>Leading performance score</p><strong id="overview-score">—</strong>
+                <small>Model score · out of 100</small>
+            </article>
+            <article class="overview-card overview-card-gold">
+                <span class="overview-icon" aria-hidden="true">✦</span>
+                <p>Top cohort estimate</p><strong id="overview-probability">—</strong>
+                <small>Relative model estimate</small>
+            </article>
         </section>
-        <section aria-labelledby="contenders-heading">
-            <h2 id="contenders-heading">Top Ballon d'Or contenders</h2>
-            <p id="contenders-status" role="status" aria-live="polite">Contenders are calculated from the selected season's eligible UCL cohort.</p>
-            <ol id="top-contenders"></ol>
+
+        <section class="content-section" aria-labelledby="featured-heading">
+            <div class="section-heading">
+                <div><p class="eyebrow">IN THE SPOTLIGHT</p><h2 id="featured-heading">Contenders to watch</h2></div>
+                <a class="text-link" href="predictions.html">All predictions <span aria-hidden="true">→</span></a>
+            </div>
+            <p id="featured-status" class="section-status" role="status" aria-live="polite">Select a season to load featured players.</p>
+            <div id="featured-players" class="featured-grid"></div>
         </section>
-        <section aria-labelledby="leaderboard-heading">
-            <h2 id="leaderboard-heading">Leaderboard preview</h2>
-            <p id="leaderboard-preview-status" role="status" aria-live="polite">Select a season to load the leaderboard.</p>
-            <ol id="leaderboard-preview"></ol>
-            <p><a href="leaderboard.html">View the full leaderboard</a></p>
+
+        <div class="dashboard-lower">
+            <section class="content-section" aria-labelledby="contenders-heading">
+                <div class="section-heading"><div><p class="eyebrow">THE FORM GUIDE</p><h2 id="contenders-heading">Top contenders</h2></div></div>
+                <p id="contenders-status" class="section-status" role="status" aria-live="polite">Contenders are calculated from the selected season's eligible UCL cohort.</p>
+                <ol id="top-contenders" class="rank-list"></ol>
+            </section>
+            <section class="content-section" aria-labelledby="leaderboard-heading">
+                <div class="section-heading"><div><p class="eyebrow">RANKED BY THE MODEL</p><h2 id="leaderboard-heading">Leaderboard preview</h2></div></div>
+                <p id="leaderboard-preview-status" class="section-status" role="status" aria-live="polite">Select a season to load the leaderboard.</p>
+                <ol id="leaderboard-preview" class="rank-list"></ol>
+                <a class="button-link button-link-secondary" href="leaderboard.html">View full leaderboard <span aria-hidden="true">→</span></a>
+            </section>
+        </div>
+
+        <section class="quick-links" aria-label="Explore UCLxDOR">
+            <a href="players.html"><span class="quick-icon" aria-hidden="true">⌕</span><span><strong>Player search</strong><small>Explore profiles and season stats</small></span><b aria-hidden="true">↗</b></a>
+            <a href="compare.html"><span class="quick-icon" aria-hidden="true">⇄</span><span><strong>Compare players</strong><small>Put performances side by side</small></span><b aria-hidden="true">↗</b></a>
+            <a href="predictions.html"><span class="quick-icon quick-icon-gold" aria-hidden="true">✦</span><span><strong>Ballon d'Or model</strong><small>Understand the contender rankings</small></span><b aria-hidden="true">↗</b></a>
         </section>
     </main>
-    <footer>
-        <p>Predicted probabilities are model estimates, not actual voting results.</p>
-    </footer>
+    <footer><p>UCLxDOR · A Champions League performance lens. Model estimates are not actual voting results or official Ballon d'Or odds.</p></footer>
     <script type="module" src="js/dashboard.js"></script>
 </body>
 </html>

@@ -3,38 +3,44 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Leaderboard | UCL Ballon d'Or Predictor</title>
+    <meta name="theme-color" content="#070B18">
+    <title>Leaderboard — UCLxDOR</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Season leaderboard</h1>
-        <nav aria-label="Main navigation">
-            <a href="index.html">Dashboard</a>
-            <a href="players.html">Player search</a>
-            <a href="compare.html">Compare players</a>
-            <a href="leaderboard.html" aria-current="page">Leaderboard</a>
-            <a href="predictions.html">Predictions</a>
-        </nav>
-    </header>
+    <header class="site-header"><div class="topbar">
+        <a class="brand" href="index.html" aria-label="UCLxDOR dashboard"><span class="brand-mark" aria-hidden="true">✦</span><span>UCL<span class="brand-x">×</span>DOR<small>THE CONTENDER INDEX</small></span></a>
+        <nav aria-label="Main navigation"><a href="index.html">Dashboard</a><a href="players.html">Players</a><a href="compare.html">Compare</a><a href="leaderboard.html" aria-current="page">Leaderboard</a><a href="predictions.html">Predictions</a></nav>
+    </div></header>
     <main>
-        <section aria-labelledby="leaderboard-heading">
-            <h2 id="leaderboard-heading">Ranked UCL contenders</h2>
-            <label for="leaderboard-season">Season</label>
-            <select id="leaderboard-season" disabled></select>
-            <button id="refresh-season" type="button" disabled>Refresh season statistics</button>
-            <p id="leaderboard-status" role="status" aria-live="polite">Loading available seasons…</p>
-            <p id="probability-scope"></p>
-            <p>The leaderboard endpoint returns player predictions, not season statistics. Use each row's statistics button to load that player's available statistics on demand.</p>
-            <label for="leaderboard-sort">Sort by</label>
-            <select id="leaderboard-sort" disabled>
-                <option value="probability">Estimated probability (highest first)</option>
-                <option value="score">Performance score (highest first)</option>
-                <option value="name">Player name (A–Z)</option>
-            </select>
+        <section class="page-heading">
+            <p class="eyebrow"><span class="live-dot"></span> THE UCL CONTENDER INDEX</p>
+            <h1>Every performance, <span>in the rankings.</span></h1>
+            <p>Explore the full season cohort, ranked by the model's Champions League performance assessment.</p>
+        </section>
+        <section class="content-section" aria-labelledby="leaderboard-heading">
+            <div class="section-heading"><div><p class="eyebrow">SEASON RANKINGS</p><h2 id="leaderboard-heading">Leaderboard</h2></div>
+                <label class="season-control" for="leaderboard-season">Season<select id="leaderboard-season" disabled></select></label>
+            </div>
+            <div class="leaderboard-tools">
+                <p id="probability-scope" class="scope-note"></p>
+                <div class="leaderboard-actions">
+                    <label class="season-control" for="leaderboard-sort">Sort by
+                        <select id="leaderboard-sort" disabled>
+                            <option value="probability">Estimated probability</option>
+                            <option value="score">Performance score</option>
+                            <option value="name">Player name (A–Z)</option>
+                        </select>
+                    </label>
+                    <button id="refresh-season" class="button-link button-link-secondary" type="button" disabled><span aria-hidden="true">↻</span> Refresh season data</button>
+                </div>
+            </div>
+            <p id="leaderboard-status" class="section-status" role="status" aria-live="polite">Loading available seasons…</p>
+            <p class="form-hint">The leaderboard returns predictions; load statistics for an individual player on demand.</p>
             <div id="leaderboard-table-container"></div>
         </section>
     </main>
+    <footer><p>First place is highlighted for readability; rankings remain model outputs based on available season data.</p></footer>
     <script type="module" src="js/leaderboard.js"></script>
 </body>
 </html>

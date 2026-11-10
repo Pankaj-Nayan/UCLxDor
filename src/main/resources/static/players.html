@@ -3,34 +3,35 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Player search | UCL Ballon d'Or Predictor</title>
+    <meta name="theme-color" content="#070B18">
+    <title>Players — UCLxDOR</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Player search</h1>
-        <nav aria-label="Main navigation">
-            <a href="index.html">Dashboard</a>
-            <a href="players.html" aria-current="page">Player search</a>
-            <a href="compare.html">Compare players</a>
-            <a href="leaderboard.html">Leaderboard</a>
-            <a href="predictions.html">Predictions</a>
-        </nav>
-    </header>
+    <header class="site-header"><div class="topbar">
+        <a class="brand" href="index.html" aria-label="UCLxDOR dashboard"><span class="brand-mark" aria-hidden="true">✦</span><span>UCL<span class="brand-x">×</span>DOR<small>THE CONTENDER INDEX</small></span></a>
+        <nav aria-label="Main navigation"><a href="index.html">Dashboard</a><a href="players.html" aria-current="page">Players</a><a href="compare.html">Compare</a><a href="leaderboard.html">Leaderboard</a><a href="predictions.html">Predictions</a></nav>
+    </div></header>
     <main>
-        <section aria-labelledby="search-heading">
-            <h2 id="search-heading">Find a player by name</h2>
-            <form id="player-search-form">
+        <section class="page-heading">
+            <p class="eyebrow">PLAYER DIRECTORY</p>
+            <h1>Every player has a <span>story.</span></h1>
+            <p>Search the connected player data to explore profiles, clubs and Champions League performances.</p>
+        </section>
+        <section class="content-section" aria-labelledby="search-heading">
+            <div class="section-heading"><div><p class="eyebrow">DISCOVER THE FIELD</p><h2 id="search-heading">Find a player</h2></div></div>
+            <form id="player-search-form" class="search-form">
                 <label for="player-search-name">Player name</label>
-                <input id="player-search-name" name="name" type="search" autocomplete="off">
-                <button type="submit">Search</button>
+                <div class="search-control"><span aria-hidden="true">⌕</span><input id="player-search-name" name="name" type="search" autocomplete="off" placeholder="Try a player name…" minlength="3"></div>
+                <button type="submit">Search players <span aria-hidden="true">→</span></button>
             </form>
-            <p>Enter at least 3 characters. Results come from the connected player data provider.</p>
-            <p id="search-status" role="status" aria-live="polite">Search for a player to see matching results.</p>
-            <ul id="search-results"></ul>
-            <button id="load-more" type="button" hidden>Load more results</button>
+            <p class="form-hint">Enter at least 3 characters. Results come from the connected player data provider.</p>
+            <p id="search-status" class="section-status" role="status" aria-live="polite">Search for a player to see matching results.</p>
+            <ul id="search-results" class="player-results"></ul>
+            <button id="load-more" class="button-link button-link-secondary load-more" type="button" hidden>Load more results</button>
         </section>
     </main>
+    <footer><p>Player details and statistics are shown when available from the connected data provider.</p></footer>
     <script type="module" src="js/players.js"></script>
 </body>
 </html>

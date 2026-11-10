@@ -20,13 +20,34 @@ async function loadPredictions(season) {
             setStatus(status, "No predicted contenders are available for this season.", "empty");
             return;
         }
-        contenders.forEach((prediction, index) => {
+        contenders.forEach(prediction => {
             const player = prediction.player;
-            const item = element("li");
-            item.append(element("h3", `${index + 1}. ${player.name || "Unnamed player"}`));
+            const item = element("li", undefined, "prediction-card");
+            item.append(element("h3", player.name || "Unnamed player"));
             if (player.currentClub) item.append(element("p", `Team: ${player.currentClub}`));
             if (player.nationality) item.append(element("p", `Nationality: ${player.nationality}`));
-            item.append(element("p", `Estimated winning probability: ${formatProbability(prediction.estimatedWinningProbability)}`));
+            item.append(element("p", `Estimated winning probability: ${formatProbability(prediction.estimatedWinningProbability)}`, "prediction-probability"));
+            const score = Number(prediction.performanceScore);
+            item.append(element("p", `Performance score: ${Number.isFinite(score) ? score.toFixed(1) : "—"} / 100`));
+            const percentiles = prediction.factorPercentiles && typeof prediction.factorPercentiles === "object"
+                ? Object.entries(prediction.factorPercentiles).filter(([, value]) => Number.isFinite(Number(value)))
+                : [];
+            const weights = prediction.factorWeights && typeof prediction.factorWeights === "object"
+                ? prediction.factorWeights
+                : {};
+            const factors = percentiles
+                .sort(([first], [second]) => Number(weights[second] || 0) - Number(weights[first] || 0))
+                .slice(0, 4);
+            if (factors.length) {
+                const factorGrid = element("div", undefined, "prediction-factors");
+                for (const [name, value] of factors) {
+                    const factor = element("div", undefined, "prediction-factor");
+                    factor.append(element("span", name.replaceAll("_", " ")));
+                    factor.append(element("strong", `${Number(value).toFixed(1)} percentile`));
+                    factorGrid.append(factor);
+                }
+                item.append(factorGrid);
+            }
             const playerId = Number(player.externalPlayerId);
             if (Number.isInteger(playerId) && playerId > 0) {
                 const link = element("a", "View player profile");
