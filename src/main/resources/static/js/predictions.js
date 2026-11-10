@@ -1,5 +1,5 @@
 import { getLeaderboard, getSeasons } from "./api.js";
-import { element, formatProbability, populateSeasonSelect, seasonFromQuery, setStatus } from "./ui.js";
+import { element, formatProbability, playerPhoto, populateSeasonSelect, seasonFromQuery, setStatus } from "./ui.js";
 
 const seasonSelect = document.querySelector("#predictions-season");
 const status = document.querySelector("#predictions-status");
@@ -23,6 +23,7 @@ async function loadPredictions(season) {
         contenders.forEach(prediction => {
             const player = prediction.player;
             const item = element("li", undefined, "prediction-card");
+            item.append(playerPhoto(player));
             item.append(element("h3", player.name || "Unnamed player"));
             if (player.currentClub) item.append(element("p", `Team: ${player.currentClub}`));
             if (player.nationality) item.append(element("p", `Nationality: ${player.nationality}`));
