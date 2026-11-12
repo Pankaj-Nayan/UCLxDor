@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#EAF4FF">
-    <title>UCLxDOR — Champions League performance, in focus</title>
+    <meta name="theme-color" content="#FFFFFF">
+    <title>UCLxDOR — The art of football</title>
     <link rel="stylesheet" href="styles.css?v=blue-20261110">
+    <link rel="stylesheet" href="editorial.css">
 </head>
 <body>
     <header class="site-header">
@@ -15,7 +16,7 @@
                 <span>UCL<span class="brand-x">×</span>DOR<small>THE CONTENDER INDEX</small></span>
             </a>
             <nav aria-label="Main navigation">
-                <a href="index.html" aria-current="page">Dashboard</a>
+                <a href="index.html" aria-current="page">Home</a>
                 <a href="players.html">Players</a>
                 <a href="compare.html">Compare</a>
                 <a href="leaderboard.html">Leaderboard</a>
@@ -26,22 +27,19 @@
     <main class="dashboard-main">
         <section class="hero" aria-labelledby="intro-heading">
             <div class="hero-copy">
-                <p class="eyebrow"><span class="live-dot"></span> UEFA CHAMPIONS LEAGUE · PLAYER INTELLIGENCE</p>
-                <h1 id="intro-heading">The race for <span>greatness</span>, measured.</h1>
-                <p>Every performance has a story. Explore the players, numbers and model estimates shaping the Champions League Ballon d'Or conversation.</p>
+                <p class="eyebrow"><span class="live-dot"></span> FEATURED PLAYER</p>
+                <h1 id="intro-heading">Jamal <span>Musiala</span></h1>
+                <p class="hero-player-meta">BAYERN MUNICH <span aria-hidden="true">|</span> GERMANY</p>
+                <h2 class="hero-headline">THE ART OF FOOTBALL.</h2>
+                <p>Explore the players, performances and moments shaping the race for football's biggest individual honour.</p>
                 <div class="hero-actions">
-                    <a class="button-link" href="leaderboard.html">Explore leaderboard <span aria-hidden="true">↗</span></a>
-                    <a class="text-link" href="players.html">Find a player <span aria-hidden="true">→</span></a>
+                    <a class="button-link" href="players.html">EXPLORE PLAYERS <span aria-hidden="true">↗</span></a>
+                    <a class="text-link" href="leaderboard.html">View the rankings <span aria-hidden="true">→</span></a>
                 </div>
-                <p class="hero-disclaimer">UCL statistical model · Estimates are not official award odds</p>
+                <p class="hero-disclaimer">Featured player editorial · Rankings are based on available season data</p>
             </div>
-            <div class="hero-orbit" aria-hidden="true">
-                <div class="orbit orbit-one"></div>
-                <div class="orbit orbit-two"></div>
-                <div class="orbit-core"><span>UCL</span><strong>×</strong><span>DOR</span></div>
-                <span class="orbit-star star-one">✦</span>
-                <span class="orbit-star star-two">✦</span>
-                <span class="orbit-star star-three">✧</span>
+            <div class="hero-art">
+                <img class="hero-player" src="https://upload.wikimedia.org/wikipedia/commons/b/be/Jamal_Musiala_2022.jpg" alt="Jamal Musiala in Bayern Munich kit" fetchpriority="high">
             </div>
         </section>
 
@@ -75,7 +73,7 @@
 
         <section class="content-section" aria-labelledby="featured-heading">
             <div class="section-heading">
-                <div><p class="eyebrow">IN THE SPOTLIGHT</p><h2 id="featured-heading">Contenders to watch</h2></div>
+                <div><p class="eyebrow">IN THE SPOTLIGHT</p><h2 id="featured-heading">Featured players</h2></div>
                 <a class="text-link" href="predictions.html">All predictions <span aria-hidden="true">→</span></a>
             </div>
             <p id="featured-status" class="section-status" role="status" aria-live="polite">Select a season to load featured players.</p>
@@ -89,12 +87,17 @@
                 <ol id="top-contenders" class="rank-list"></ol>
             </section>
             <section class="content-section" aria-labelledby="leaderboard-heading">
-                <div class="section-heading"><div><p class="eyebrow">RANKED BY THE MODEL</p><h2 id="leaderboard-heading">Leaderboard preview</h2></div></div>
+                <div class="section-heading"><div><p class="eyebrow">RANKED BY THE MODEL</p><h2 id="leaderboard-heading">Latest rankings</h2></div></div>
                 <p id="leaderboard-preview-status" class="section-status" role="status" aria-live="polite">Select a season to load the leaderboard.</p>
                 <ol id="leaderboard-preview" class="rank-list"></ol>
                 <a class="button-link button-link-secondary" href="leaderboard.html">View full leaderboard <span aria-hidden="true">→</span></a>
             </section>
         </div>
+
+        <section class="about-section" aria-labelledby="about-heading">
+            <div><p class="eyebrow">ABOUT UCLxDOR</p><h2 id="about-heading">The game, seen closer.</h2></div>
+            <p>UCLxDOR brings football performance analysis and Ballon d'Or contender predictions together. Explore player seasons, compare available statistics and follow model estimates built from connected competition data—not official voting results or award odds.</p>
+        </section>
 
         <section class="quick-links" aria-label="Explore UCLxDOR">
             <a href="players.html"><span class="quick-icon" aria-hidden="true">⌕</span><span><strong>Player search</strong><small>Explore profiles and season stats</small></span><b aria-hidden="true">↗</b></a>
@@ -102,7 +105,7 @@
             <a href="predictions.html"><span class="quick-icon quick-icon-gold" aria-hidden="true">✦</span><span><strong>Ballon d'Or model</strong><small>Understand the contender rankings</small></span><b aria-hidden="true">↗</b></a>
         </section>
     </main>
-    <footer><p>UCLxDOR · A Champions League performance lens. Model estimates are not actual voting results or official Ballon d'Or odds.</p></footer>
+    <footer><p>Jamal Musiala image (crop by <a href="https://commons.wikimedia.org/wiki/File:Jamal_Musiala_2022.jpg">ArsenalGhanaPartey / Wikimedia Commons</a>), <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. UCLxDOR · A Champions League performance lens. Model estimates are not actual voting results or official Ballon d'Or odds.</p></footer>
     <script type="module" src="js/dashboard.js"></script>
 </body>
 </html>
