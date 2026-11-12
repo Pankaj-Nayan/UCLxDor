@@ -28,6 +28,16 @@ async function loadPredictions(season) {
             if (player.currentClub) item.append(element("p", `Team: ${player.currentClub}`));
             if (player.nationality) item.append(element("p", `Nationality: ${player.nationality}`));
             item.append(element("p", `Estimated winning probability: ${formatProbability(prediction.estimatedWinningProbability)}`, "prediction-probability"));
+            const probability = Number(prediction.estimatedWinningProbability);
+            if (Number.isFinite(probability)) {
+                const meter = element("div", undefined, "prediction-meter");
+                meter.setAttribute("role", "img");
+                meter.setAttribute("aria-label", `Estimated probability ${formatProbability(probability)}`);
+                const fill = element("span");
+                fill.style.width = `${Math.max(0, Math.min(100, probability))}%`;
+                meter.append(fill);
+                item.append(meter);
+            }
             const score = Number(prediction.performanceScore);
             item.append(element("p", `Performance score: ${Number.isFinite(score) ? score.toFixed(1) : "—"} / 100`));
             const percentiles = prediction.factorPercentiles && typeof prediction.factorPercentiles === "object"
@@ -45,6 +55,11 @@ async function loadPredictions(season) {
                     const factor = element("div", undefined, "prediction-factor");
                     factor.append(element("span", name.replaceAll("_", " ")));
                     factor.append(element("strong", `${Number(value).toFixed(1)} percentile`));
+                    const factorMeter = element("div", undefined, "prediction-factor-meter");
+                    const factorFill = element("span");
+                    factorFill.style.width = `${Math.max(0, Math.min(100, Number(value)))}%`;
+                    factorMeter.append(factorFill);
+                    factor.append(factorMeter);
                     factorGrid.append(factor);
                 }
                 item.append(factorGrid);

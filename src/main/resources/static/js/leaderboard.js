@@ -7,6 +7,7 @@ const status = document.querySelector("#leaderboard-status");
 const scope = document.querySelector("#probability-scope");
 const sortSelect = document.querySelector("#leaderboard-sort");
 const tableContainer = document.querySelector("#leaderboard-table-container");
+const podium = document.querySelector("#leaderboard-podium");
 let contenders = [];
 let currentSeason = null;
 const loadedStatistics = new Map();
@@ -28,6 +29,7 @@ function sortedContenders() {
 
 function renderTable() {
     tableContainer.replaceChildren();
+    renderPodium();
     if (!contenders.length) return;
 
     const table = element("table");
@@ -80,10 +82,25 @@ function renderTable() {
     tableContainer.append(table);
 }
 
+function renderPodium() {
+    podium.replaceChildren();
+    sortedContenders().slice(0, 3).forEach((prediction, index) => {
+        const player = prediction.player || {};
+        const card = element("article", undefined, "podium-card");
+        card.append(element("span", `RANK ${index + 1}`, "podium-rank"));
+        card.append(playerPhoto(player));
+        card.append(element("h3", player.name || "Unnamed player"));
+        card.append(element("p", player.currentClub || "Club unavailable"));
+        card.append(element("p", formatProbability(prediction.estimatedWinningProbability), "podium-value"));
+        podium.append(card);
+    });
+}
+
 async function loadLeaderboard(season) {
     currentSeason = season;
     contenders = [];
     loadedStatistics.clear();
+    podium.replaceChildren();
     tableContainer.replaceChildren();
     scope.textContent = "";
     refreshButton.disabled = true;
